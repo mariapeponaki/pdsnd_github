@@ -86,7 +86,7 @@ def load_data(city, month, day):
 
     # extract month and day of week from Start Time to create new columns
     df['month'] = df['Start Time'].dt.month_name()
-    df['day_of_week'] = df['Start Time'].dt.day_name()
+    df['week_day'] = df['Start Time'].dt.day_name()
 
     # filter by month if applicable
     if month != 'all':
@@ -96,7 +96,7 @@ def load_data(city, month, day):
     # filter by day of week if applicable
     if day != 'all':
         # filter by day of week to create the new dataframe
-        df = df[df['day_of_week'] == day.title()]
+        df = df[df['week_day'] == day.title()]
 
     return df
 
@@ -113,7 +113,7 @@ def time_statistics(df):
     print("Most common month is: " + most_common_month)
 
     # display the most common day of week
-    most_common_day = df['day_of_week'].mode()[0]
+    most_common_day = df['week_day'].mode()[0]
     print("Most common Day of Week is: " + most_common_day)
 
     # display the most common start hour
